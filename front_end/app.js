@@ -2,8 +2,8 @@
 
 $(function(){
     var data = $('#title');
-    var books = $.ajax({
-        url: 'http://127.0.0.1:8000/person',
+    var movies = $.ajax({
+        url: 'http://127.0.0.1:8000/movies/',
         data:{},
         type: 'GET',
         dataType: 'json',
@@ -25,7 +25,7 @@ $(function(){
         console.log('Bład wczytywania')
     }).always(function(){
         console.log('Wykonywana zawsze')
-        console.log(books)
+        console.log(movies)
     }) // ajax
 
 }) // f

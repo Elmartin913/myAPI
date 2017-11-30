@@ -17,9 +17,10 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from rest.views import MovieListView
+from rest.views import MovieListView, MovieView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^movies/$', MovieListView.as_view())
+    url(r'^movies/$', MovieListView.as_view()),
+    url(r'^movies/(?P<id>\d+)$', MovieView.as_view()),
 ]
