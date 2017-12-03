@@ -16,11 +16,13 @@ Including another URLconf
 
 from django.conf.urls import url
 from django.contrib import admin
+from rest_framework.urlpatterns import format_suffix_patterns
 
-from rest.views import MovieListView, MovieView
+from rest.views import MovieListView, MovieView, MoviesView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^movies/$', MovieListView.as_view()),
-    url(r'^movies/(?P<id>\d+)$', MovieView.as_view()),
+    url(r'^movies/$', MoviesView.as_view()),
+    url(r'^movies/(?P<pk>\d+)$', MovieView.as_view()),
 ]
+urlpatterns = format_suffix_patterns(urlpatterns)
