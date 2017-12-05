@@ -19,18 +19,20 @@ class MoviesView(APIView):
 
     def get(self, request, format=None):
         snippets = Movie.objects.all()
+        print(snippets)
         serializer = MovieSerializer(snippets, many=True)
         return Response(serializer.data)
 
-    #def post(self, request, format=None):
-    #    serializer = MovieSerializer(data=request.data)
-    #    if serializer.is_valid():
-    #        serializer.save()
-    #        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    #    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
     def post(self, request, format=None):
-        return Response({'received data': request.data})
+        serializer = MovieSerializer(data=request.data)
+        print(serializer)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    # def post(self, request, format=None):
+    #    return Response({'movies': request.data})
 
 
 class MovieView(APIView):
@@ -53,7 +55,7 @@ class MovieView(APIView):
         pk = int(pk)
         movie = self.get_object(pk)
         serializer = MovieSerializer(movie, data=request.data)
-        if serialier.is_valid():
+        if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

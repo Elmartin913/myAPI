@@ -22,7 +22,7 @@ from rest.views import MovieListView, MovieView, MoviesView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^movies/$', MoviesView.as_view()),
-    url(r'^movies/(?P<pk>\d+)$', MovieView.as_view()),
+    url(r'^movies/$', MoviesView.as_view(), name='movies'),
+    url(r'^movies/(?P<pk>\d+)$', MovieView.as_view(), name='movie'),
 ]
 urlpatterns = format_suffix_patterns(urlpatterns)
